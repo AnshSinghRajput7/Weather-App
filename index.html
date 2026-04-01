@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Weather App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body id="appBody" class="min-h-screen flex flex-col justify-between p-4 bg-gradient-to-br from-indigo-400 to-purple-400">
+
+    <div class="flex-1 flex items-center justify-center w-full">
+        <div class="glass-card rounded-3xl p-8 w-full max-w-md text-center text-gray-900 shadow-xl relative overflow-hidden">
+            <h1 class="text-3xl font-bold mb-6 drop-shadow-sm">Weather Finder</h1>
+
+            <form id="searchForm" class="flex items-center space-x-2 mb-6 relative z-10">
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Enter city name..."
+                    class="flex-1 bg-white/50 focus:bg-white/80 placeholder-gray-600 px-4 py-3 rounded-xl outline-none transition-all border border-white/40 shadow-inner text-gray-800 font-medium placeholder-gray-500"
+                    required
+                />
+                <button
+                    type="submit"
+                    class="bg-black/80 hover:bg-black text-white px-6 py-3 rounded-xl transition-all font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                >
+                    Search
+                </button>
+            </form>
+
+            <div id="loading" class="hidden py-4 text-center z-10 relative">
+                <svg class="animate-spin h-8 w-8 mx-auto text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <p class="mt-2 font-medium">Fetching weather...</p>
+            </div>
+
+            <div id="errorMsg" class="hidden py-4 text-red-700 bg-red-100/50 rounded-xl font-medium border border-red-200/50 z-10 relative">City not found. Please try again.</div>
+
+            <div id="weatherData" class="hidden flex-col items-center justify-center mt-4 transition-opacity duration-500 z-10 relative">
+                <h2 id="cityName" class="text-3xl font-extrabold tracking-tight drop-shadow-md mb-1">City Name</h2>
+                <p id="weatherDesc" class="text-lg font-medium text-gray-800 mb-6 drop-shadow-sm capitalize">Condition</p>
+
+                <div class="flex items-center justify-center gap-8 w-full bg-white/30 rounded-2xl p-6 shadow-inner border border-white/20">
+                    <div class="flex flex-col items-center">
+                        <svg class="w-8 h-8 mb-2 text-red-600 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        <span id="temperature" class="text-4xl font-black drop-shadow-sm">--°C</span>
+                        <span class="text-sm font-semibold uppercase tracking-wider text-gray-700 mt-1">Temp</span>
+                    </div>
+
+                    <div class="h-16 w-px bg-gray-800/20"></div>
+
+                    <div class="flex flex-col items-center">
+                        <svg class="w-8 h-8 mb-2 text-blue-600 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        <span id="windSpeed" class="text-4xl font-black drop-shadow-sm">--</span>
+                        <span class="text-sm font-semibold uppercase tracking-wider text-gray-700 mt-1">Wind (km/h)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-6 text-center text-sm text-gray-800 z-10 relative">crafted by ansh — Ansh SIngh</footer>
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
